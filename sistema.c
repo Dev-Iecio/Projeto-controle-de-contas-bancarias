@@ -34,6 +34,8 @@ int main()
         vaiparaxy(30, 16);
         printf("(3) Sair");
 
+        printf("sono");
+
         vaiparaxy(07, 23);
         printf("Digite sua opcao: ");
         scanf("%d", &opc);
