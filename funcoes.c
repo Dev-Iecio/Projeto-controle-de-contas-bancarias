@@ -147,10 +147,8 @@ void cadastro_final_lista(tipolista_conta *l)
         vaiparaxy(07, 23);
         printf("Deseja continuar cadastrando?(1-SIM || 2-NAO):");
         scanf("%d", &resp);
-    }while (resp == 1);
-    
+    } while (resp == 1);
 }
-
 
 void cadastro_inicio_lista(tipolista_conta *l)
 {
@@ -281,7 +279,7 @@ void cadastro_inicio_lista(tipolista_conta *l)
 
 void cadastro_na_posicao(tipolista_conta *l)
 {
-    //declaracao de variaveis
+    // declaracao de variaveis
     tipoApontador_conta aux;
     tipoApontador_conta p;
     reg_contas conta;
@@ -291,14 +289,16 @@ void cadastro_na_posicao(tipolista_conta *l)
 
     do
     {
+        tela();
+        tela_cadastros();
         vaiparaxy(03, 03);
         printf("                                        ");
         vaiparaxy(03, 03);
         printf("CADASTRO NA POSICAO ");
-        tela();
 
         do
         {
+            vaiparaxy(07, 23);
             vaiparaxy(07, 23);
             printf("Digite 0 para cancelar e voltar");
 
@@ -307,9 +307,9 @@ void cadastro_na_posicao(tipolista_conta *l)
             vaiparaxy(40, 05);
             scanf("%d", &conta.codigo_conta);
             // Se digitar 0 sai do loop
-            if(conta.codigo_conta == 0)
+            if (conta.codigo_conta == 0)
             {
-                return 0;
+                return;
             }
 
             aux = verifica_codigo_conta(l, conta.codigo_conta);
@@ -317,32 +317,33 @@ void cadastro_na_posicao(tipolista_conta *l)
             if (aux != NULL)
             {
                 vaiparaxy(07, 23);
-                printf("                                ");
+                printf("                                  ");
                 vaiparaxy(07, 23);
-                printf("Funcionario jah cadastrado ");
-                getch;
+                printf("Funcionario ja cadastrado ");
+                getch();
             }
 
-        }while (aux != NULL && conta.codigo_conta != 0);
+        } while (aux != NULL && conta.codigo_conta != 0);
 
         do
         {
             vaiparaxy(07, 23);
             printf("                                    ");
             vaiparaxy(07, 23);
-            printf("Digite a posicao a ser cadastrado");
+            printf("Digite a posicao a ser cadastrado: ");
             scanf("%d", &resp);
 
-            if (resp < 1 || resp > tamanho (l))
+            if (resp < 1 || resp > tamanho(l))
             {
                 vaiparaxy(07, 23);
-                printf("                            ");
+                printf("                                     ");
                 vaiparaxy(07, 23);
                 printf("Posicao invalida");
                 getch();
+                return;
             }
 
-        }while (resp < 1 || resp > tamanho(l));
+        } while (resp < 1 || resp > tamanho(l));
 
         if (conta.codigo_conta != 0)
         {
@@ -372,7 +373,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             vaiparaxy(40, 13);
             fflush(stdin);
             fgets(conta.tipo_conta, 10, stdin);
-            
+
             vaiparaxy(40, 15);
             printf("                          ");
             vaiparaxy(40, 15);
@@ -389,7 +390,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             printf("                          ");
             vaiparaxy(40, 19);
             fflush(stdin);
-            scanf("%d", conta.status);
+            scanf("%d", &conta.status);
 
             vaiparaxy(07, 23);
             printf("                               ");
@@ -400,8 +401,8 @@ void cadastro_na_posicao(tipolista_conta *l)
             if (confirma == 1)
             {
                 aux = (tipoApontador_conta)malloc(sizeof(tipoitem_conta));
-                aux -> proximo = NULL;
-                aux -> conteudo = conta;
+                aux->proximo = NULL;
+                aux->conteudo = conta;
 
                 if (l->primeiro = NULL)
                 {
@@ -411,22 +412,69 @@ void cadastro_na_posicao(tipolista_conta *l)
                 else
                 {
                     aux = l->primeiro;
-                    
+
                     for (b = 1; b <= resp - 2; b++)
                     {
-                        aux = aux -> proximo;
+                        aux = aux->proximo;
                     }
                     p->proximo = aux->proximo;
                     aux->proximo = p;
                 }
             }
             vaiparaxy(07, 23);
+            printf("                                               ");
+            vaiparaxy(07, 23);
             printf("Deseja Cadastrar outro (1-SIM || 2-NAO)");
             scanf("%d", &resp);
         }
-    }while (resp == 1);
+
+    } while (resp == 1);
 }
 
+void consultar(tipolista_conta *l)
+{
+    tela();
+    tipoApontador_conta aux;
+
+    if (l->primeiro == NULL)
+    {
+        tela();
+        vaiparaxy(07, 05);
+        printf("Nenhum funcionario cadastrado");
+        getch();
+        return;
+    }
+    else
+    {
+        aux = l->primeiro;
+    }
+    while (aux != NULL)
+    {
+        tela_cadastros();
+        vaiparaxy(40, 05);
+        printf("%d", aux->conteudo.codigo_conta);
+        vaiparaxy(40, 07);
+        printf("%s", aux->conteudo.banco);
+        vaiparaxy(40, 9);
+        printf("%s", aux->conteudo.agencia);
+        vaiparaxy(40, 11);
+        printf("%s", aux->conteudo.numero_conta);
+        vaiparaxy(40, 13);
+        printf("%s", aux->conteudo.tipo_conta);
+        vaiparaxy(40, 15);
+        printf("%.2f", aux->conteudo.v1_saldo);
+        vaiparaxy(40, 17);
+        printf("%.2f", aux->conteudo.v1_limite);
+        vaiparaxy(40, 19);
+        printf("%d", aux->conteudo.status);
+
+        aux = aux->proximo;
+
+        vaiparaxy(07, 23);
+        printf("Pressione qualquer tecla para listar o proximo funcionario");
+        getch();
+    }
+}
 
 void menu_contas_bancarias(tipolista_conta *l)
 {
@@ -470,7 +518,9 @@ void menu_contas_bancarias(tipolista_conta *l)
         case 3:
             cadastro_na_posicao(l);
             break;
-
+        case 8:
+            consultar(l);
+            break;
         default:
             break;
         }

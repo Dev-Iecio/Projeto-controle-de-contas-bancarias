@@ -69,6 +69,8 @@ void cadastro_na_posicao(tipolista_conta *l);
 
 //void menu_consulta_contas(tipolista_conta *l);
 
+void consultar(tipolista_conta *l);
+
 
 //funçao menu de opçoes de cadastros 
 void menu_contas_bancarias(tipolista_conta *l);
