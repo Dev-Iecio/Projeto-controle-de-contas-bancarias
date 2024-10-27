@@ -61,7 +61,10 @@ tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod);
 void cadastro_final_lista(tipolista_conta *l);
 
 //cadastrar no inicio
+void cadastro_inicio_lista(tipolista_conta *l);
 
+//cadastrar na posicao
+void cadastro_na_posicao(tipolista_conta *l);
 
 
 //void menu_consulta_contas(tipolista_conta *l);

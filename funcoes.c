@@ -1,5 +1,18 @@
 #include "funcoes.h"
 
+int tamanho(tipolista_conta *l)
+{
+    int tamanho = 0;
+    tipoApontador_conta aux;
+    aux = l->primeiro;
+    while (aux != NULL)
+    {
+        tamanho++;
+        aux = aux->proximo;
+    }
+    return tamanho;
+}
+
 tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod)
 {
     tipoApontador_conta aux;
@@ -166,7 +179,7 @@ void cadastro_inicio_lista(tipolista_conta *l)
             vaiparaxy(40, 05);
             scanf("%d", &conta.codigo_conta);
 
-            // Se Digitar 0 sai do loop
+            // 0 sai do loop
             if (conta.codigo_conta == 0)
             {
                 return;
@@ -266,7 +279,153 @@ void cadastro_inicio_lista(tipolista_conta *l)
     } while (resp == 1);
 }
 
+void cadastro_na_posicao(tipolista_conta *l)
+{
+    //declaracao de variaveis
+    tipoApontador_conta aux;
+    tipoApontador_conta p;
+    reg_contas conta;
+    int resp;
+    int confirma;
+    int b;
 
+    do
+    {
+        vaiparaxy(03, 03);
+        printf("                                        ");
+        vaiparaxy(03, 03);
+        printf("CADASTRO NA POSICAO ");
+        tela();
+
+        do
+        {
+            vaiparaxy(07, 23);
+            printf("Digite 0 para cancelar e voltar");
+
+            vaiparaxy(40, 05);
+            printf("                                    ");
+            vaiparaxy(40, 05);
+            scanf("%d", &conta.codigo_conta);
+            // Se digitar 0 sai do loop
+            if(conta.codigo_conta == 0)
+            {
+                return 0;
+            }
+
+            aux = verifica_codigo_conta(l, conta.codigo_conta);
+
+            if (aux != NULL)
+            {
+                vaiparaxy(07, 23);
+                printf("                                ");
+                vaiparaxy(07, 23);
+                printf("Funcionario jah cadastrado ");
+                getch;
+            }
+
+        }while (aux != NULL && conta.codigo_conta != 0);
+
+        do
+        {
+            vaiparaxy(07, 23);
+            printf("                                    ");
+            vaiparaxy(07, 23);
+            printf("Digite a posicao a ser cadastrado");
+            scanf("%d", &resp);
+
+            if (resp < 1 || resp > tamanho (l))
+            {
+                vaiparaxy(07, 23);
+                printf("                            ");
+                vaiparaxy(07, 23);
+                printf("Posicao invalida");
+                getch();
+            }
+
+        }while (resp < 1 || resp > tamanho(l));
+
+        if (conta.codigo_conta != 0)
+        {
+            vaiparaxy(07, 23);
+            printf("                                            ");
+
+            vaiparaxy(40, 07);
+            printf("                          ");
+            vaiparaxy(40, 07);
+            fflush(stdin);
+            fgets(conta.banco, 50, stdin);
+
+            vaiparaxy(40, 9);
+            printf("                          ");
+            vaiparaxy(40, 9);
+            fflush(stdin);
+            fgets(conta.agencia, 10, stdin);
+
+            vaiparaxy(40, 11);
+            printf("                          ");
+            vaiparaxy(40, 11);
+            fflush(stdin);
+            fgets(conta.numero_conta, 50, stdin);
+
+            vaiparaxy(40, 13);
+            printf("                          ");
+            vaiparaxy(40, 13);
+            fflush(stdin);
+            fgets(conta.tipo_conta, 10, stdin);
+            
+            vaiparaxy(40, 15);
+            printf("                          ");
+            vaiparaxy(40, 15);
+            fflush(stdin);
+            scanf("%f", &conta.v1_saldo);
+
+            vaiparaxy(40, 17);
+            printf("                          ");
+            vaiparaxy(40, 17);
+            fflush(stdin);
+            scanf("%f", &conta.v1_limite);
+
+            vaiparaxy(40, 19);
+            printf("                          ");
+            vaiparaxy(40, 19);
+            fflush(stdin);
+            scanf("%d", conta.status);
+
+            vaiparaxy(07, 23);
+            printf("                               ");
+            vaiparaxy(07, 23);
+            printf("Confirma?(1-SIM || 2-NAO): ");
+            scanf("%d", &confirma);
+
+            if (confirma == 1)
+            {
+                aux = (tipoApontador_conta)malloc(sizeof(tipoitem_conta));
+                aux -> proximo = NULL;
+                aux -> conteudo = conta;
+
+                if (l->primeiro = NULL)
+                {
+                    l->primeiro = aux;
+                    l->ultimo = aux;
+                }
+                else
+                {
+                    aux = l->primeiro;
+                    
+                    for (b = 1; b <= resp - 2; b++)
+                    {
+                        aux = aux -> proximo;
+                    }
+                    p->proximo = aux->proximo;
+                    aux->proximo = p;
+                }
+            }
+            vaiparaxy(07, 23);
+            printf("Deseja Cadastrar outro (1-SIM || 2-NAO)");
+            scanf("%d", &resp);
+        }
+    }while (resp == 1);
+}
 
 
 void menu_contas_bancarias(tipolista_conta *l)
@@ -306,6 +465,10 @@ void menu_contas_bancarias(tipolista_conta *l)
 
         case 2:
             cadastro_inicio_lista(l);
+            break;
+
+        case 3:
+            cadastro_na_posicao(l);
             break;
 
         default:
