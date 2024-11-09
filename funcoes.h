@@ -17,7 +17,7 @@ char numero_conta[50];
 char tipo_conta [10];
 float v1_saldo;
 float v1_limite;
-int status;
+char status[13];
 }reg_contas;
 
 typedef struct tipoitem_conta *tipoApontador_conta;
@@ -66,11 +66,27 @@ void cadastro_inicio_lista(tipolista_conta *l);
 //cadastrar na posicao
 void cadastro_na_posicao(tipolista_conta *l);
 
+void mostrar_e_apagar_ultimo(tipolista_conta *l);
+
+//void salva_cadastros(tipolista_conta *l);
+
+//void carregar_cadastros(tipolista_conta *l);
+
+void mostrar_apagar_primeiro(tipolista_conta *l);
+
+void remover_em_posicao(tipolista_conta *l);
+
+void alterar_na_posicao(tipolista_conta *l);
+
+//void salvar_alteracao(tipolista_conta *l);
 
 //void menu_consulta_contas(tipolista_conta *l);
 
 void consultar(tipolista_conta *l);
 
+int tamanho(tipolista_conta *l);
+
+void listar_cadastros(tipolista_conta *l);
 
 //funçao menu de opçoes de cadastros 
 void menu_contas_bancarias(tipolista_conta *l);

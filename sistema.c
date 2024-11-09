@@ -21,7 +21,7 @@ int main()
     tipolista_conta l;
     l.primeiro = NULL;
     l.ultimo = NULL;
-
+    
     do
     {
         tela();
@@ -44,6 +44,10 @@ int main()
         {
         case 1:
             menu_contas_bancarias(&l);
+
+            break;
+        case 3:
+            
             break;
         }
     } while (opc != 3);
