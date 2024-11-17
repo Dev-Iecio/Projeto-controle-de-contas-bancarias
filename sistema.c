@@ -21,6 +21,7 @@ int main()
     tipolista_conta l;
     l.primeiro = NULL;
     l.ultimo = NULL;
+    carregar(&l);
     
     do
     {
@@ -30,11 +31,11 @@ int main()
         vaiparaxy(30, 12);
         printf("(1) Contas Bancarias");
         vaiparaxy(30, 14);
-        printf("(2) Movimentacao Bamcaria");
+        printf("(2) Movimentacao Bancaria");
         vaiparaxy(30, 16);
         printf("(3) Sair");
 
-        printf("sono");
+        
 
         vaiparaxy(07, 23);
         printf("Digite sua opcao: ");
@@ -46,10 +47,11 @@ int main()
             menu_contas_bancarias(&l);
 
             break;
-        case 3:
+        case 2:
             
             break;
         }
     } while (opc != 3);
+    gravar(&l);
     return 0;
 }

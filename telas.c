@@ -57,3 +57,24 @@ void tela_cadastros()
 
 
 }
+
+void tela_consulta(){
+    tela();
+    vaiparaxy(03, 03);
+    printf("                                              ");
+    vaiparaxy(03,03);
+    printf("CONSULTAS");
+
+    vaiparaxy(07, 07);
+    printf("(1)-Consultar fichario do cliente geral");
+    vaiparaxy(07, 9);
+    printf("(2)-Consulta por ordem de codigo");
+    vaiparaxy(07, 11);
+    printf("(3)-Consulta em ordem alfabetica");
+    vaiparaxy(07, 13);
+    printf("(4)-Consulta por codigo especifico");
+    vaiparaxy(07,15);
+    printf("(5)-Retornar");
+
+
+}
