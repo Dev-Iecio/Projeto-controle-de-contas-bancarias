@@ -1,4 +1,5 @@
 #include "funcoes.h"
+//Função que cadastra uma conta em qualquer posiçao
 void cadastro_na_posicao(tipolista_conta *l)
 {
     // declaracao de variaveis
@@ -11,6 +12,7 @@ void cadastro_na_posicao(tipolista_conta *l)
 
     do
     {
+        //Verifica se a lista está vazia, caso esteja, informa o usuário e retorna
         if (l->primeiro == NULL)
         {
             tela();
@@ -31,7 +33,7 @@ void cadastro_na_posicao(tipolista_conta *l)
 
         do
         {
-
+            //Solicita o código da conta e verifica se é 0 para cancelar
             vaiparaxy(07, 23);
             printf("Digite 0 para cancelar e voltar");
 
@@ -44,7 +46,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             {
                 return;
             }
-
+            // Verifica se a conta já está cadastrada
             aux = verifica_codigo_conta(l, conta.codigo_conta);
 
             if (aux != NULL)
@@ -57,7 +59,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             }
 
         } while (aux != NULL && conta.codigo_conta != 0);
-
+        //Se o código da conta for válido, continua o cadastro
         if (conta.codigo_conta != 0)
         {
             vaiparaxy(07, 23);
@@ -98,7 +100,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             vaiparaxy(40, 17);
             fflush(stdin);
             scanf("%f", &conta.v1_limite);
-
+            //Solicita o status da conta (ativa ou desativada)
             do
             {
                 vaiparaxy(07, 23);
@@ -111,7 +113,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             } while (conta.status != 1 && conta.status != 2);
           
             
-
+            //Solicita a posição em que a conta será cadastrada
             int posicao;
             do
             {
@@ -120,7 +122,7 @@ void cadastro_na_posicao(tipolista_conta *l)
                 vaiparaxy(07, 23);
                 printf("Digite a posicao a ser cadastrado: ");
                 scanf("%d", &posicao);
-
+                //Verifica se a posição é válida
                 if (posicao < 1 || posicao > tamanho(l))
                 {
                     vaiparaxy(07, 23);
@@ -131,13 +133,13 @@ void cadastro_na_posicao(tipolista_conta *l)
                 }
 
             } while (posicao < 1 || posicao > tamanho(l));
-
+            //Pergunta se o usuário confirma os dados
             vaiparaxy(07, 23);
             printf("                                             ");
             vaiparaxy(07, 23);
             printf("Confirma?(1-SIM || 2-NAO): ");
             scanf("%d", &confirma);
-
+            //Se confirmado, cria o novo item e insere na posição indicada
             if (confirma == 1)
             {
 
@@ -145,25 +147,30 @@ void cadastro_na_posicao(tipolista_conta *l)
                 aux->proximo = NULL;
                 aux->conteudo = conta;
 
+                //Insere o item no início da lista
                 aux->proximo = l->primeiro;
                 l->primeiro = aux;
             }
             else
             {
+                //Se não confirmado, percorre a lista até a posição indicada
                 aux = l->primeiro;
-
+                //Percorre até a posição anterior à indicada
                 for (b = 1; b <= confirma - 2; b++)
                 {
                     aux = aux->proximo;
                 }
+                //Insere o novo item na posição correta
                 p->proximo = aux->proximo;
                 aux->proximo = p;
             }
         }
+        //Pergunta se o usuário deseja cadastrar outra conta
         vaiparaxy(07, 23);
         printf("                                                 ");
         vaiparaxy(07, 23);
         printf("Deseja Cadastrar outro (1-SIM || 2-NAO)");
         scanf("%d", &resp);
+        //Continua se a resposta for '1' (sim)
     } while (resp == 1);
 }

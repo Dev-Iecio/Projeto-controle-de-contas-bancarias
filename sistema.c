@@ -7,6 +7,7 @@
 
 #include "funcoes.h"
 
+//Funçao para colocar as coordenadas onde o mouse ira
 void vaiparaxy(int x, int y)
 {
     COORD cord;

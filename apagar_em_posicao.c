@@ -1,12 +1,15 @@
 #include "funcoes.h"
+//funçao para apagar o cadastro do funcioario em qualquer posiçao
 void remover_em_posicao(tipolista_conta *l)
 {
+    // declaracao de variaveis
     int posicao;
     int escolha;
     int cont_posicao = 1;
     tipoApontador_conta aux;
     tipoApontador_conta anterior = NULL;
 
+    //verifica se a lista esta vazia
     listar_cadastros(l);
 
     if (l->primeiro == NULL)
@@ -26,11 +29,13 @@ void remover_em_posicao(tipolista_conta *l)
         printf("Digite a posicao a ser apagada ou 0 para cancelar: ");
         scanf("%d", &posicao);
 
+        //se o usuario digitar 0, cancela a operaçao
         if (posicao == 0)
         {
             return;
         }
 
+        //verifica se a posicao fornecida e valida
         if (posicao < 1 || posicao > tamanho(l))
         {
             vaiparaxy(07, 23);
@@ -39,17 +44,19 @@ void remover_em_posicao(tipolista_conta *l)
             printf("SEM FUNCIONARIO CADASTRADO NESSA POSICAO");
             getch();
         }
-
+      //repete ate o usuario fornecer uma posicao valida
     } while (posicao < 1 || posicao > tamanho(l));
-
-    aux = l->primeiro;
+    //Ponteiro auxiliar começa no primeiro elemente da lista
+    aux = l->primeiro; 
+    //Percorre a lista ate encontrar a posicao desejada  
     while (aux != NULL && cont_posicao < posicao)
     {
-        anterior = aux;
-        aux = aux->proximo;
-        cont_posicao++;
+        anterior = aux;//Atualiza o ponteiro anterior
+        aux = aux->proximo;//Avança para o proximo elemente
+        cont_posicao++;//Incrementa o contador na posiçao
     }
 
+    //Se o elemento foi encontrado na posiçao espeficada
     if (aux != NULL)
     {
         do
@@ -81,9 +88,11 @@ void remover_em_posicao(tipolista_conta *l)
             printf("(1)Excluir || (0)Voltar tela inicial:");
             scanf("%d", &escolha);
 
+            //Executa conforme a escolha do usuario
             switch (escolha)
             {
             case 1:
+                //Caso a exclusão seja confirmada, realiza a remoção da conta
                 if (aux == l->primeiro)
                 {
                     l->primeiro = aux->proximo;
@@ -92,6 +101,7 @@ void remover_em_posicao(tipolista_conta *l)
                         l->ultimo = NULL;
                     }
                 }
+                //Se o elemento a ser removido é o último
                 else if (aux == l->ultimo)
                 {
                     anterior->proximo = NULL;
@@ -102,7 +112,7 @@ void remover_em_posicao(tipolista_conta *l)
                     anterior->proximo = aux->proximo;
                 }
 
-                free(aux);
+                free(aux);//Libera a memória do elemento removido
                 tela();
                 tela_cadastros();
                 vaiparaxy(03, 03);
@@ -128,6 +138,7 @@ void remover_em_posicao(tipolista_conta *l)
                 printf("Digito Invalido");
                 getch();
             }
+          //Repete o processo até o usuário escolher voltar (escolha 0)
         } while (escolha != 0);
     }
 }

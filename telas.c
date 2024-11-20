@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "funcoes.h"
 
+// Tela Principal
 void tela(){
     int lin;
 
@@ -33,6 +34,7 @@ void tela(){
 
 }
 
+// Tela Cadastro
 void tela_cadastros()
 {
 
@@ -58,6 +60,7 @@ void tela_cadastros()
 
 }
 
+// Tela Consulta
 void tela_consulta(){
     tela();
     vaiparaxy(03, 03);

@@ -1219,6 +1219,7 @@ tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod)
 
     } while (opc != 0); // Finaliza o loop quando o usuário digita 0
 }*/
+//Funçao para o Menu de consultas
 void menu_consulta(tipolista_conta *l)
 {
     int opc;
@@ -1253,6 +1254,7 @@ void menu_consulta(tipolista_conta *l)
     } while (opc != 5);
 }
 
+//Funçao para o Menu de consultas
 void menu_contas_bancarias(tipolista_conta *l)
 
 {

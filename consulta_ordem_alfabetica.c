@@ -1,11 +1,13 @@
 #include "funcoes.h"
+//Funçao para Consultar por Ordem alfabetica
 void consulta_ordem_alfabetica(tipolista_conta *l)
 {
     tela();
-    int t = tamanho(l); // Obtém o tamanho da lista
+    // Obtém o tamanho da lista
+    int t = tamanho(l); 
     tipoApontador_conta i, j;
     reg_contas aux;
-
+    //Verifica se a lista está vazia (nenhum funcionário cadastrado)
     if (l->primeiro == NULL)
     {
         tela();
@@ -15,12 +17,12 @@ void consulta_ordem_alfabetica(tipolista_conta *l)
         return;
     }
 
-    // Laço de ordenação (Bubble Sort) para ordenar por nome do banco
+    // Laço de ordenação para ordenar por nome do banco
     for (i = l->primeiro; i != NULL; i = i->proximo)
     {
         for (j = i->proximo; j != NULL; j = j->proximo)
         {
-            // Compara o nome do banco de i com o de j
+            //Compara o nome do banco de i com o de j usando a função strcmp
             if (strcmp(i->conteudo.banco, j->conteudo.banco) > 0)
             {
                 // Troca os dados de i e j
@@ -36,7 +38,7 @@ void consulta_ordem_alfabetica(tipolista_conta *l)
     while (aux2 != NULL)
     {
         tela_cadastros();
-        vaiparaxy(40, 05); // Ajusta o cursor na tela para a linha 5, coluna 40
+        vaiparaxy(40, 05);
         printf("%d", aux2->conteudo.codigo_conta);
 
         vaiparaxy(40, 07);
@@ -60,8 +62,10 @@ void consulta_ordem_alfabetica(tipolista_conta *l)
         vaiparaxy(40, 19);
         printf("%d", aux2->conteudo.status);
 
-        aux2 = aux2->proximo; // Avança para o próximo nó
+        //Avança para o próximo nó
+        aux2 = aux2->proximo; 
 
+        //Mensagem para o usuário pressionar qualquer tecla para continuar a listagem
         vaiparaxy(07, 23);
         printf("Pressione qualquer tecla para listar o proximo funcionario");
         getch();
