@@ -81,3 +81,131 @@ void tela_consulta(){
 
 
 }
+
+void tela_lista_de_movimentacao(){
+
+    tela();
+    vaiparaxy(02, 05);
+    printf("Codigo: ");
+    vaiparaxy(01, 06);
+    printf("+------------------------------------------------------------------------------+");
+    vaiparaxy(02, 07);
+    printf("Dt.Movi");
+    vaiparaxy(14, 07);
+    printf("Favorecido");
+    vaiparaxy(40, 07);
+    printf("TpMovi");
+    vaiparaxy(54, 07);
+    printf("Vl.Movi");
+    vaiparaxy(70, 07);
+    printf("Saldo");
+    vaiparaxy(01, 8);
+    printf("+----------- ------------------------- ------------- --------------- ----------+");
+}
+
+void tela_cadastro_mov()
+{
+    tela();
+    vaiparaxy(7, 06);
+    printf("Sequencia Movimentacao.:");
+    vaiparaxy(7, 07);
+    printf("Codigo da conta........:");
+    vaiparaxy(7, 8);
+    printf("Banco..................:");
+    vaiparaxy(7, 9);
+    printf("Agencia................:");
+    vaiparaxy(7, 10);
+    printf("Numero da Conta........:");
+    vaiparaxy(7, 11);
+    printf("Tipo da Conta..........:");
+    vaiparaxy(7, 12);
+    printf("Saldo..................:");
+    vaiparaxy(7, 13);
+    printf("Limite.................:");
+    vaiparaxy(7, 14);
+    printf("Saldo+Limite...........:");
+    vaiparaxy(01, 16);
+    printf("+-----------------------------------------------------------------------------+");
+    vaiparaxy(7, 17);
+    printf("(1)-Data Movimentacao..:");
+    vaiparaxy(7, 18);
+    printf("(2)-Tipo Movimentacao..:");
+    vaiparaxy(7, 19);
+    printf("(3)-Favorecido.........:");
+    vaiparaxy(7, 20);
+    printf("(4)-Valor Movimentacao.:");
+    vaiparaxy(7, 21);
+    printf("(5)-Novo Saldo.........:");
+}
+
+void tela_transferencia(){
+
+    tela();
+    vaiparaxy(01, 6);
+    printf("+------------CONTA ORIGEM-----------------------------CONTA DESTINO------------+");
+    vaiparaxy(40, 7);
+    printf("|");
+    vaiparaxy(40, 8);
+    printf("|");
+    vaiparaxy(40, 9);
+    printf("|");
+    vaiparaxy(40, 10);
+    printf("|");
+    vaiparaxy(40, 11);
+    printf("|");
+    vaiparaxy(40, 12);
+    printf("|");
+    vaiparaxy(40, 13);
+    printf("|");
+    vaiparaxy(40, 14);
+    printf("|");
+    vaiparaxy(40, 15);
+    printf("|");
+    vaiparaxy(01, 16);
+    printf("+------------------------------------------------------------------------------+");
+
+    vaiparaxy(03, 07);
+    printf("Codigo da conta.....:");
+    vaiparaxy(03, 8);
+    printf("Banco...............:");
+    vaiparaxy(03, 9);
+    printf("Agencia.............:");
+    vaiparaxy(03, 10);
+    printf("Numero da Conta.....:");
+    vaiparaxy(03, 11);
+    printf("Tipo da Conta.......:");
+    vaiparaxy(03, 12);
+    printf("Saldo...............:");
+    vaiparaxy(03, 13);
+    printf("Limite..............:");
+    vaiparaxy(03, 14);
+    printf("Saldo+Limite........:");
+    vaiparaxy(03, 15);
+    printf("Novo Saldo..........:");
+    
+    vaiparaxy(41, 07);
+    printf("Codigo da conta.....:");
+    vaiparaxy(41, 8);
+    printf("Banco...............:");
+    vaiparaxy(41, 9);
+    printf("Agencia.............:");
+    vaiparaxy(41, 10);
+    printf("Numero da Conta.....:");
+    vaiparaxy(41, 11);
+    printf("Tipo da Conta.......:");
+    vaiparaxy(41, 12);
+    printf("Saldo...............:");
+    vaiparaxy(41, 13);
+    printf("Limite..............:");
+    vaiparaxy(41, 14);
+    printf("Saldo+Limite........:");
+    vaiparaxy(41, 15);
+    printf("Novo Saldo..........:");
+    
+    vaiparaxy(22, 18);
+    printf("Valor a Ser Trasferido.:");
+
+    vaiparaxy(22, 19);
+    printf("Data da Transferencia..:");
+
+}
