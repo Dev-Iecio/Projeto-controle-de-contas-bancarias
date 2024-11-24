@@ -7,7 +7,6 @@
 
 #include "funcoes.h"
 
-//Funçao para colocar as coordenadas onde o mouse ira
 void vaiparaxy(int x, int y)
 {
     COORD cord;
@@ -23,6 +22,10 @@ int main()
     l.primeiro = NULL;
     l.ultimo = NULL;
     carregar(&l);
+    tipolista_mov m;
+    m.primeiro = NULL;
+    m.ultimo = NULL;
+    carregar_movi(&m);
     
     do
     {
@@ -45,14 +48,15 @@ int main()
         switch (opc)
         {
         case 1:
-            menu_contas_bancarias(&l);
+            menu_contas_bancarias(&l,&m);
 
             break;
         case 2:
-            
+            menu_movimentacao(&l,&m);
             break;
         }
     } while (opc != 3);
     gravar(&l);
+    gravar_movi(&m);
     return 0;
 }

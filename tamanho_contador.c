@@ -1,6 +1,5 @@
 #include "funcoes.h"
 
-//Funçao para contagem do tamanho da lista
 int tamanho(tipolista_conta *l)
 {
     int tamanho = 0;
@@ -14,7 +13,6 @@ int tamanho(tipolista_conta *l)
     return tamanho;
 }
 
-//Funçao para verificar a conta na lista
 tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod)
 {
     tipoApontador_conta aux;
@@ -30,3 +28,4 @@ tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod)
     }
     return NULL;
 }
+

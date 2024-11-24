@@ -1,15 +1,10 @@
 #include "funcoes.h"
 
-void gravar(tipolista_conta *l)
+void gravar_movi(tipolista_mov *m)
 {
-    tela();
-    vaiparaxy(07,23);
-    printf("Cadastros e movimentacoes foram gravados");
-    getch();
-    
    
     FILE *ptr;
-    char *nomearquivo = "contas.dat";
+    char *nomearquivo = "movimentacoes.dat";
     char *modo_gravacao = "wb";  
 
     
@@ -22,12 +17,12 @@ void gravar(tipolista_conta *l)
     }
 
     
-    tipoApontador_conta p = l->primeiro;
+    tipoApontador_mov p = m->primeiro;
 
     
     while (p != NULL)
     {
-        fwrite(&p->conteudo, sizeof(reg_contas), 1, ptr);  
+        fwrite(&p->conteudo, sizeof(reg_movimentos), 1, ptr);  
         p = p->proximo;  
     }
 

@@ -948,7 +948,7 @@ tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod)
                 if (resp == 1)
                 {
                     aux->conteudo = func;
-                    
+
                 }
             }
             vaiparaxy(07, 23);
@@ -1219,7 +1219,6 @@ tipoApontador_conta verifica_codigo_conta(tipolista_conta *l, int cod)
 
     } while (opc != 0); // Finaliza o loop quando o usuário digita 0
 }*/
-//Funçao para o Menu de consultas
 void menu_consulta(tipolista_conta *l)
 {
     int opc;
@@ -1254,12 +1253,10 @@ void menu_consulta(tipolista_conta *l)
     } while (opc != 5);
 }
 
-//Funçao para o Menu de consultas
-void menu_contas_bancarias(tipolista_conta *l)
+void menu_contas_bancarias(tipolista_conta *l, tipolista_mov *m)
 
 {
-   
-    
+
     int opc;
 
     do
@@ -1300,13 +1297,13 @@ void menu_contas_bancarias(tipolista_conta *l)
             cadastro_na_posicao(l);
             break;
         case 4:
-            mostrar_e_apagar_ultimo(l);
+            mostrar_e_apagar_ultimo(l,m);
             break;
         case 5:
-            mostrar_apagar_primeiro(l);
+            mostrar_apagar_primeiro(l,m);
             break;
         case 6:
-            remover_em_posicao(l);
+            remover_em_posicao(l,m);
             break;
         case 7:
             alterar_na_posicao(l);
@@ -1314,10 +1311,36 @@ void menu_contas_bancarias(tipolista_conta *l)
         case 8:
             menu_consulta(l);
             break;
-       
+
         default:
             break;
         }
     } while (opc != 9);
-    
+}
+void menu_movimentacao(tipolista_conta *l, tipolista_mov *m)
+{
+    int opc;
+    do
+    {
+        tela_movimentacao();
+        vaiparaxy(07,23);
+        scanf("%d",&opc);
+        switch (opc)
+        {
+        case 1:
+            cadastro_mov(l,m);
+            break;
+        case 2:
+            transferencia(l,m);
+            
+            break;
+        case 3:
+            consulta_movi(l,m);
+            break;
+        case 4:
+            break;
+        default:
+            break;
+        }
+    } while (opc != 4);
 }

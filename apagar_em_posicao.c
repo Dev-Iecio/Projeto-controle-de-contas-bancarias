@@ -1,15 +1,12 @@
 #include "funcoes.h"
-//funçao para apagar o cadastro do funcioario em qualquer posiçao
-void remover_em_posicao(tipolista_conta *l)
+void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
 {
-    // declaracao de variaveis
     int posicao;
     int escolha;
     int cont_posicao = 1;
     tipoApontador_conta aux;
     tipoApontador_conta anterior = NULL;
 
-    //verifica se a lista esta vazia
     listar_cadastros(l);
 
     if (l->primeiro == NULL)
@@ -29,13 +26,11 @@ void remover_em_posicao(tipolista_conta *l)
         printf("Digite a posicao a ser apagada ou 0 para cancelar: ");
         scanf("%d", &posicao);
 
-        //se o usuario digitar 0, cancela a operaçao
         if (posicao == 0)
         {
             return;
         }
 
-        //verifica se a posicao fornecida e valida
         if (posicao < 1 || posicao > tamanho(l))
         {
             vaiparaxy(07, 23);
@@ -44,19 +39,17 @@ void remover_em_posicao(tipolista_conta *l)
             printf("SEM FUNCIONARIO CADASTRADO NESSA POSICAO");
             getch();
         }
-      //repete ate o usuario fornecer uma posicao valida
+
     } while (posicao < 1 || posicao > tamanho(l));
-    //Ponteiro auxiliar começa no primeiro elemente da lista
-    aux = l->primeiro; 
-    //Percorre a lista ate encontrar a posicao desejada  
+
+    aux = l->primeiro;
     while (aux != NULL && cont_posicao < posicao)
     {
-        anterior = aux;//Atualiza o ponteiro anterior
-        aux = aux->proximo;//Avança para o proximo elemente
-        cont_posicao++;//Incrementa o contador na posiçao
+        anterior = aux;
+        aux = aux->proximo;
+        cont_posicao++;
     }
 
-    //Se o elemento foi encontrado na posiçao espeficada
     if (aux != NULL)
     {
         do
@@ -82,17 +75,41 @@ void remover_em_posicao(tipolista_conta *l)
             vaiparaxy(40, 17);
             printf("%.2f", aux->conteudo.v1_limite);
             vaiparaxy(40, 19);
-            printf("%s", aux->conteudo.status);
+            printf("%d", aux->conteudo.status);
+
+            
 
             vaiparaxy(07, 23);
             printf("(1)Excluir || (0)Voltar tela inicial:");
             scanf("%d", &escolha);
 
-            //Executa conforme a escolha do usuario
+            if (aux->conteudo.v1_saldo != 0)
+            {
+                limpa_msg();
+                vaiparaxy(07, 23);
+                printf("Conta nao pode ser removida");
+                getch();
+                break;
+            }
+            
+            /*tipoApontador_mov aux2;
+            tipoApontador_mov aux_m;
+            aux_m->conteudo.codigo_conta = aux->conteudo.codigo_conta;
+            aux_m = conta_movi(m, aux_m->conteudo.codigo_conta);*/
+            tipoApontador_mov aux_m;
+           
+            if(aux_m->conteudo.sequencial != 0){
+                limpa_msg();
+                vaiparaxy(07, 23);
+                printf("Conta nao pode ser removida possui registro de movimentacao");
+                getch();
+                break;
+            }
+            
+          
             switch (escolha)
             {
             case 1:
-                //Caso a exclusão seja confirmada, realiza a remoção da conta
                 if (aux == l->primeiro)
                 {
                     l->primeiro = aux->proximo;
@@ -101,7 +118,6 @@ void remover_em_posicao(tipolista_conta *l)
                         l->ultimo = NULL;
                     }
                 }
-                //Se o elemento a ser removido é o último
                 else if (aux == l->ultimo)
                 {
                     anterior->proximo = NULL;
@@ -112,7 +128,7 @@ void remover_em_posicao(tipolista_conta *l)
                     anterior->proximo = aux->proximo;
                 }
 
-                free(aux);//Libera a memória do elemento removido
+                free(aux);
                 tela();
                 tela_cadastros();
                 vaiparaxy(03, 03);
@@ -138,7 +154,6 @@ void remover_em_posicao(tipolista_conta *l)
                 printf("Digito Invalido");
                 getch();
             }
-          //Repete o processo até o usuário escolher voltar (escolha 0)
         } while (escolha != 0);
     }
 }

@@ -1,8 +1,8 @@
 #include <windows.h>
 #include "funcoes.h"
 
-// Tela Principal
-void tela(){
+void tela()
+{
     int lin;
 
     system("cls");
@@ -16,13 +16,13 @@ void tela(){
         printf("|");
     }
     vaiparaxy(01, 01);
-    printf("+----------------------------------------------------------------------------+");
+    printf("+-----------------------------------------------------------------------------+");
     vaiparaxy(01, 04);
-    printf("+----------------------------------------------------------------------------+");
+    printf("+-----------------------------------------------------------------------------+");
     vaiparaxy(01, 22);
-    printf("+----------------------------------------------------------------------------+");
+    printf("+-----------------------------------------------------------------------------+");
     vaiparaxy(01, 24);
-    printf("+----------------------------------------------------------------------------+");
+    printf("+-----------------------------------------------------------------------------+");
 
     vaiparaxy(03, 02);
     printf("GABRIEL DALECIO.RA10002691||GABRIEL RIBEIRO");
@@ -30,11 +30,8 @@ void tela(){
     printf("SISTEMA DE CONTROLE BANCARIO");
     vaiparaxy(02, 23);
     printf("MSG: ");
-
-
 }
 
-// Tela Cadastro
 void tela_cadastros()
 {
 
@@ -54,18 +51,14 @@ void tela_cadastros()
     printf("(6)-Limite....................:");
     vaiparaxy(07, 19);
     printf("(7)-STATUS....................:");
-
-
-
-
 }
 
-// Tela Consulta
-void tela_consulta(){
+void tela_consulta()
+{
     tela();
     vaiparaxy(03, 03);
     printf("                                              ");
-    vaiparaxy(03,03);
+    vaiparaxy(03, 03);
     printf("CONSULTAS");
 
     vaiparaxy(07, 07);
@@ -76,31 +69,26 @@ void tela_consulta(){
     printf("(3)-Consulta em ordem alfabetica");
     vaiparaxy(07, 13);
     printf("(4)-Consulta por codigo especifico");
-    vaiparaxy(07,15);
+    vaiparaxy(07, 15);
     printf("(5)-Retornar");
-
-
 }
 
-void tela_lista_de_movimentacao(){
-
+void tela_movimentacao()
+{
     tela();
-    vaiparaxy(02, 05);
-    printf("Codigo: ");
-    vaiparaxy(01, 06);
-    printf("+------------------------------------------------------------------------------+");
-    vaiparaxy(02, 07);
-    printf("Dt.Movi");
-    vaiparaxy(14, 07);
-    printf("Favorecido");
-    vaiparaxy(40, 07);
-    printf("TpMovi");
-    vaiparaxy(54, 07);
-    printf("Vl.Movi");
-    vaiparaxy(70, 07);
-    printf("Saldo");
-    vaiparaxy(01, 8);
-    printf("+----------- ------------------------- ------------- --------------- ----------+");
+    vaiparaxy(03, 03);
+    printf("                                              ");
+    vaiparaxy(03, 03);
+    printf("MOVIMENTACOES");
+
+    vaiparaxy(07, 07);
+    printf("(1)-Movimentacao de Debito e Credito");
+    vaiparaxy(07, 9);
+    printf("(2)-Transferencia entre contas bancarias");
+    vaiparaxy(07, 11);
+    printf("(3)-consulta Movimentacoes Bancarias");
+    vaiparaxy(07, 13);
+    printf("(4)-Retornar");
 }
 
 void tela_cadastro_mov()
@@ -135,14 +123,20 @@ void tela_cadastro_mov()
     vaiparaxy(7, 20);
     printf("(4)-Valor Movimentacao.:");
     vaiparaxy(7, 21);
-    printf("(5)-Novo Saldo.........:");
+    printf("(5)- Novo Saldo........:");
 }
 
-void tela_transferencia(){
+void limpa_msg()
+{
+    vaiparaxy(07, 23);
+    printf("                                                                      ");
+}
 
+void tela_transferencia()
+{
     tela();
     vaiparaxy(01, 6);
-    printf("+------------CONTA ORIGEM-----------------------------CONTA DESTINO------------+");
+    printf("+------------CONTA ORIGEM-----------------------------CONTA DESTINO-----------+");
     vaiparaxy(40, 7);
     printf("|");
     vaiparaxy(40, 8);
@@ -162,7 +156,7 @@ void tela_transferencia(){
     vaiparaxy(40, 15);
     printf("|");
     vaiparaxy(01, 16);
-    printf("+------------------------------------------------------------------------------+");
+    printf("+-----------------------------------------------------------------------------+");
 
     vaiparaxy(03, 07);
     printf("Codigo da conta.....:");
@@ -182,7 +176,7 @@ void tela_transferencia(){
     printf("Saldo+Limite........:");
     vaiparaxy(03, 15);
     printf("Novo Saldo..........:");
-    
+
     vaiparaxy(41, 07);
     printf("Codigo da conta.....:");
     vaiparaxy(41, 8);
@@ -201,11 +195,53 @@ void tela_transferencia(){
     printf("Saldo+Limite........:");
     vaiparaxy(41, 15);
     printf("Novo Saldo..........:");
-    
-    vaiparaxy(22, 18);
+
+    vaiparaxy(22, 17);
     printf("Valor a Ser Trasferido.:");
 
-    vaiparaxy(22, 19);
+    vaiparaxy(22, 18);
     printf("Data da Transferencia..:");
+}
 
+void tela_consultas_contas()
+{
+    tela();
+    vaiparaxy(02, 05);
+    printf("Cd");
+    vaiparaxy(05, 05);
+    printf("Banco");
+    vaiparaxy(21, 05);
+    printf("Agenc");
+    vaiparaxy(28, 05);
+    printf("Conta");
+    vaiparaxy(38, 05);
+    printf("Tipo Conta");
+    vaiparaxy(54, 05);
+    printf("Saldo");
+    vaiparaxy(66, 05);
+    printf("Limite");
+    vaiparaxy(77, 05);
+    printf("St");
+    vaiparaxy(01, 06);
+    printf("+-- --------------- ------ --------- --------------- ----------- ---------- --+");
+}
+
+void tela_consulta_movi(){
+    tela();
+    vaiparaxy(02, 05);
+    printf("Codigo: ");
+    vaiparaxy(01, 06);
+    printf("+-----------------------------------------------------------------------------+");
+    vaiparaxy(02, 07);
+    printf("Dt.Movi");
+    vaiparaxy(14, 07);
+    printf("Favorecido");
+    vaiparaxy(40, 07);
+    printf("TpMovi");
+    vaiparaxy(54, 07);
+    printf("Vl.Movi");
+    vaiparaxy(70, 07);
+    printf("Saldo");
+    vaiparaxy(01, 8);
+    printf("+----------- ------------------------- ------------- --------------- ---------+");
 }

@@ -1,13 +1,12 @@
 #include "funcoes.h"
-//Função que exibe o último cadastro e permite ao usuário removê-lo
-void mostrar_e_apagar_ultimo(tipolista_conta *l)
+void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
 {
     tela();
     vaiparaxy(03, 03);
     printf("TELA DELETAR ULTIMO CADASTRO");
     int escolha = 5;
+    tipoApontador_mov aux_m;
 
-    //Verifica se a lista esta vazia
     if (l->primeiro == NULL)
     {
         vaiparaxy(07, 05);
@@ -19,9 +18,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l)
     {
         do
         {
-            //Ponteiro auxiliar que aponta para o último cadastro
             tipoApontador_conta aux = l->ultimo;
-            //Exibe as informações do último cadastro na tela
             tela_cadastros();
             vaiparaxy(40, 05);
             printf("%d", aux->conteudo.codigo_conta);
@@ -40,7 +37,6 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l)
             vaiparaxy(40, 19);
             printf("%d", aux->conteudo.status);
 
-            //Exibe as opções para o usuário: excluir ou voltar
             vaiparaxy(07, 23);
             printf("                                                             ");
             vaiparaxy(07, 23);
@@ -48,26 +44,42 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l)
             vaiparaxy(61, 23);
             scanf("%d", &escolha);
 
+            if (aux->conteudo.v1_saldo != 0)
+            {
+                limpa_msg();
+                vaiparaxy(07, 23);
+                printf("Conta nao pode ser removida");
+                getch();
+                break;
+            }
+
+            tipoApontador_mov aux_m;
+
+            if (aux_m->conteudo.sequencial != 0)
+            {
+                limpa_msg();
+                vaiparaxy(07, 23);
+                printf("Conta nao pode ser removida possui registro de movimentacao");
+                getch();
+                break;
+            }
+
             switch (escolha)
             {
             case 1:
-                //Se o usuário escolheu excluir o último cadastro
 
-                //Verifica se a lista tem apenas um elemento
                 if (l->primeiro == l->ultimo)
                 {
-                //Caso a lista tenha um único cadastro, libera a memória e ajusta ambos os ponteiros (primeiro e último)
+
                     free(l->primeiro);
                     l->primeiro = NULL;
                     l->ultimo = NULL;
                 }
                 else
                 {
-                //Caso a lista tenha mais de um elemento, percorre até o penúltimo elemento
                     tipoApontador_conta aux = l->primeiro;
                     tipoApontador_conta anterior = NULL;
 
-                //Encontra o penultimo elemento
                     while (aux->proximo != NULL)
                     {
                         anterior = aux;
@@ -78,7 +90,6 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l)
                     anterior->proximo = NULL;
                     l->ultimo = anterior;
                 }
-                //Exibe msg de Sucesso
                 tela();
                 tela_cadastros();
 
@@ -94,14 +105,13 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l)
                 return;
 
             default:
-            //Se o usuário fornecer uma escolha inválida
                 vaiparaxy(07, 23);
                 printf("                                                                     ");
                 vaiparaxy(07, 23);
                 printf("Digito Invalido");
                 getch();
             }
-        //Repete até o usuário escolher uma opção válida
+
         } while (escolha != 1 && escolha != 0);
     }
 }

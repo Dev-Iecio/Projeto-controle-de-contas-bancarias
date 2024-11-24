@@ -1,14 +1,11 @@
 #include "funcoes.h"
-//Funçao para alterar os Dados da conta bancaria na lista
 void alterar_na_posicao(tipolista_conta *l)
 {
-    // declaracao de variaveis
     tipoApontador_conta aux;
     int resp;
     int campo;
     reg_contas func;
 
-    //Verificar se a lista esta vazia
     if (l->primeiro == NULL)
     {
         tela();
@@ -19,11 +16,10 @@ void alterar_na_posicao(tipolista_conta *l)
     }
     else
     {
-        //Inicia o Loop para o processo de alteraçao
+
         do
         {
             listar_cadastros(l);
-            //laço que solicita o codigo a ser alterado
             do
             {
 
@@ -35,10 +31,8 @@ void alterar_na_posicao(tipolista_conta *l)
                 printf("Digite o codigo do cadastro || (0-SAIR):");
                 vaiparaxy(48, 23);
                 scanf("%d", &func.codigo_conta);
-                //Funcao para verificar se o codigo existe na lista
                 aux = verifica_codigo_conta(l, func.codigo_conta);
 
-                //Codigo nao encontrado, msg de erro
                 if (aux == NULL && func.codigo_conta != 0)
                 {
                     vaiparaxy(07, 23);
@@ -50,7 +44,6 @@ void alterar_na_posicao(tipolista_conta *l)
 
             } while (aux == NULL && func.codigo_conta != 0);
 
-            //Se o codigo for valido, Diferente de 0
             if (func.codigo_conta != 0)
             {
                 tela();
@@ -60,8 +53,7 @@ void alterar_na_posicao(tipolista_conta *l)
                 vaiparaxy(20, 03);
                 printf("ALTERACAO CADASTRO");
                 func = aux->conteudo;
-            
-            //Exibir as informaçoes atuais do cadastro
+
                 vaiparaxy(40, 05);
                 printf("%d", func.codigo_conta);
                 vaiparaxy(40, 07);
@@ -78,8 +70,6 @@ void alterar_na_posicao(tipolista_conta *l)
                 printf("%.2f", func.v1_limite);
                 vaiparaxy(40, 19);
                 printf("%d", func.status);
-                
-                //Exibe o status da conta
                 if (func.status == 1)
                 {
                     vaiparaxy(43, 19);
@@ -91,7 +81,6 @@ void alterar_na_posicao(tipolista_conta *l)
                     printf("(Conta desativada)");
                 }
 
-                //Laço para escolher o campo a ser alterado
                 do
                 {
                     do
@@ -101,8 +90,6 @@ void alterar_na_posicao(tipolista_conta *l)
                         vaiparaxy(07, 23);
                         printf("Digite o campo a ser alterado(0-SAIR):");
                         scanf("%d", &campo);
-                        
-                        //Verificar se a opçao e valida
                         if (campo < 0 || campo > 7)
                         {
                             vaiparaxy(07, 23);
@@ -113,7 +100,6 @@ void alterar_na_posicao(tipolista_conta *l)
                         }
                     } while (campo < 0 || campo > 7);
 
-                    //realiza alteraçao no campo selecionado
                     if (campo != 0)
                     {
                         switch (campo)
@@ -164,6 +150,13 @@ void alterar_na_posicao(tipolista_conta *l)
 
                             do
                             {
+                                if(func.v1_saldo != 0){
+                                    vaiparaxy(07,23);
+                                    printf("O status nao pode ser alterado se tiver saldo ou debito");
+                                    func.status = 1;
+                                    getch();
+                                    break;
+                                }
                                 vaiparaxy(07, 23);
                                 printf("(1)-Conta ativa (2)-Conta desativada");
                                 vaiparaxy(40, 19);
@@ -171,6 +164,7 @@ void alterar_na_posicao(tipolista_conta *l)
                                 vaiparaxy(40, 19);
                                 fflush(stdin);
                                 scanf("%d", &func.status);
+                               
                             } while (func.status != 1 && func.status != 2);
                         default:
                             break;
@@ -178,8 +172,6 @@ void alterar_na_posicao(tipolista_conta *l)
                     }
 
                 } while (campo != 0);
-                
-                //Pergunta se o usuario confirma as alteraçoes
                 vaiparaxy(07, 23);
                 printf("                                                    ");
                 vaiparaxy(07, 23);
@@ -187,11 +179,9 @@ void alterar_na_posicao(tipolista_conta *l)
                 scanf("%d", &resp);
                 if (resp == 1)
                 {
-                    //atualiza os dados dos cadastros
-                    aux->conteudo = func; 
+                    aux->conteudo = func;
                 }
             }
-            //Pergunta se o usuario deseja alterar outro cadastro
             vaiparaxy(07, 23);
             printf("                                              ");
             vaiparaxy(07, 23);

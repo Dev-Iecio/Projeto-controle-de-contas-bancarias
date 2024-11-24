@@ -1,12 +1,10 @@
 #include "funcoes.h"
-//Funçao para Consultar por Codigo 
 void consulta_por_codigo(tipolista_conta *l)
 {
     tela();
     tipoApontador_conta aux;
     int opc;
 
-    //Verifica se a lista de contas está vazia
     if (l->primeiro == NULL)
     {
         tela();
@@ -42,8 +40,8 @@ void consulta_por_codigo(tipolista_conta *l)
             {
                 tela();
                 // Se a conta for encontrada, imprime os detalhes
-                tela_cadastros();  
-                vaiparaxy(40, 05); 
+                tela_cadastros();  // Atualiza a tela para mostrar os dados
+                vaiparaxy(40, 05); // Ajusta o cursor na linha 5, coluna 40
                 printf(" %d", aux->conteudo.codigo_conta);
 
                 vaiparaxy(40, 07);
@@ -71,9 +69,8 @@ void consulta_por_codigo(tipolista_conta *l)
                 printf("Pressione qualquer tecla para continuar...");
                 getch();
             }
-        //Repete até encontrar o código ou o usuário digitar 0 para sair
-        } while (opc != 0 && aux == NULL); 
-        
-      //Finaliza o loop quando o usuário digita 0
-    } while (opc != 0); 
+
+        } while (opc != 0 && aux == NULL); // Repete até encontrar o código ou o usuário digitar 0 para sair
+
+    } while (opc != 0); // Finaliza o loop quando o usuário digita 0
 }
