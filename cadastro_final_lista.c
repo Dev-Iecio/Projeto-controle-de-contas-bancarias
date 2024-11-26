@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Cadastro Final da Lista */
 #include "funcoes.h"
+// Funcao para Cadastrar no Final
 void cadastro_final_lista(tipolista_conta *l)
 {
     tipoApontador_conta aux;
@@ -18,6 +24,7 @@ void cadastro_final_lista(tipolista_conta *l)
 
         do
         {
+            // Solicita o código da conta e permite cancelar digitando 0
             vaiparaxy(07, 23);
             printf("Digite 0 para cancelar e voltar");
 
@@ -25,14 +32,14 @@ void cadastro_final_lista(tipolista_conta *l)
             printf("                               ");
             vaiparaxy(40, 05);
             scanf("%d", &conta.codigo_conta);
-
+            // Se o código for 0, o cadastro é cancelado
             if (conta.codigo_conta == 0)
             {
                 return;
             }
-
+            // Verifica se a conta já existe na lista
             aux = verifica_codigo_conta(l, conta.codigo_conta);
-
+            // Se a conta já existir, exibe uma mensagem e pede para tentar novamente
             if (aux != NULL)
             {
                 vaiparaxy(07, 23);
@@ -86,7 +93,7 @@ void cadastro_final_lista(tipolista_conta *l)
             scanf("%f", &conta.v1_limite);
 
             do
-            {
+            {   // Se o saldo for diferente de zero, a conta é automaticamente ativada
                 if (conta.v1_saldo != 0)
                 {
                     vaiparaxy(07, 23);
@@ -95,6 +102,7 @@ void cadastro_final_lista(tipolista_conta *l)
                     getch();
                     break;
                 }
+                // Caso contrário, solicita ao usuário para definir se a conta será ativa ou desativada
                 vaiparaxy(07, 23);
                 printf("(1)-Conta ativa (2)-Conta desativada");
                 vaiparaxy(40, 19);
@@ -114,6 +122,7 @@ void cadastro_final_lista(tipolista_conta *l)
             aux = (tipoApontador_conta)malloc(sizeof(tipoitem_conta));
             aux->proximo = NULL;
             aux->conteudo = conta;
+            // Se a lista estiver vazia, o primeiro e último nó serão o novo nó
             if (l->primeiro == NULL)
             {
                 l->primeiro = aux;
@@ -121,6 +130,7 @@ void cadastro_final_lista(tipolista_conta *l)
             }
             else
             {
+                // Se já houver elementos na lista, o novo nó é inserido ao final da lista
                 l->ultimo->proximo = aux;
                 l->ultimo = aux;
             }

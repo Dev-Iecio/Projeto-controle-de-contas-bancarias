@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Consulta por Ordem de codigo*/
 #include "funcoes.h"
+// Funcao para Consultar Por Ordem de codigo
 void consulta_ordem_codigo(tipolista_conta *l)
 {
     tela();

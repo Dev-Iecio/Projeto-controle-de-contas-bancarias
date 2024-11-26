@@ -1,7 +1,13 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Cadastro na Posicao */
 #include "funcoes.h"
+//Funcao para Cadastrar na posicao
 void cadastro_na_posicao(tipolista_conta *l)
 {
-    // declaracao de variaveis
+    
     tipoApontador_conta aux;
     tipoApontador_conta p;
     reg_contas conta;
@@ -10,7 +16,7 @@ void cadastro_na_posicao(tipolista_conta *l)
     int b;
 
     do
-    {
+    {   // Verifica se a lista está vazia
         if (l->primeiro == NULL)
         {
             tela();
@@ -31,7 +37,7 @@ void cadastro_na_posicao(tipolista_conta *l)
 
         do
         {
-
+            // Se digitar 0 sai do loop
             vaiparaxy(07, 23);
             printf("Digite 0 para cancelar e voltar");
 
@@ -39,7 +45,7 @@ void cadastro_na_posicao(tipolista_conta *l)
             printf("                                    ");
             vaiparaxy(40, 05);
             scanf("%d", &conta.codigo_conta);
-            // Se digitar 0 sai do loop
+            
             if (conta.codigo_conta == 0)
             {
                 return;
@@ -120,7 +126,7 @@ void cadastro_na_posicao(tipolista_conta *l)
                 vaiparaxy(07, 23);
                 printf("Digite a posicao a ser cadastrado: ");
                 scanf("%d", &posicao);
-
+                // Valida se a posição está dentro do intervalo válido
                 if (posicao < 1 || posicao > tamanho(l))
                 {
                     vaiparaxy(07, 23);
@@ -140,16 +146,17 @@ void cadastro_na_posicao(tipolista_conta *l)
 
             if (confirma == 1)
             {
-
+                // Aloca memória para o novo nó
                 aux = (tipoApontador_conta)malloc(sizeof(tipoitem_conta));
                 aux->proximo = NULL;
                 aux->conteudo = conta;
-
+                // Insere o novo nó no início da lista
                 aux->proximo = l->primeiro;
                 l->primeiro = aux;
             }
             else
             {
+                // Se não for para inserir no início, encontra a posição correta e insere
                 aux = l->primeiro;
 
                 for (b = 1; b <= confirma - 2; b++)

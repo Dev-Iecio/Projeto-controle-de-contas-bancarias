@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Apagar o ultimo cadastro da lista */
 #include "funcoes.h"
+// Funcao Mostrar e apagar Ultimo
 void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
 {
     tela();
@@ -6,7 +12,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
     printf("TELA DELETAR ULTIMO CADASTRO");
     int escolha = 5;
     tipoApontador_mov aux_m;
-
+    // Verifica se a lista de contas está vazia
     if (l->primeiro == NULL)
     {
         vaiparaxy(07, 05);
@@ -43,7 +49,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
             printf("(1)Excluir funcionario || (0)Voltar para tela inicial");
             vaiparaxy(61, 23);
             scanf("%d", &escolha);
-
+            // Se o saldo for diferente de zero, a conta não pode ser removida
             if (aux->conteudo.v1_saldo != 0)
             {
                 limpa_msg();
@@ -67,7 +73,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
             switch (escolha)
             {
             case 1:
-
+                // Se o usuário escolher excluir, verifica se a lista contém um único item
                 if (l->primeiro == l->ultimo)
                 {
 
@@ -77,6 +83,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
                 }
                 else
                 {
+                    // Se houver mais de um item, remove o último item da lista
                     tipoApontador_conta aux = l->primeiro;
                     tipoApontador_conta anterior = NULL;
 
@@ -87,7 +94,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
                     }
 
                     free(aux);
-                    anterior->proximo = NULL;
+                    anterior->proximo = NULL;   // Atualiza o penúltimo item para ser o último
                     l->ultimo = anterior;
                 }
                 tela();
@@ -105,6 +112,7 @@ void mostrar_e_apagar_ultimo(tipolista_conta *l, tipolista_mov *m)
                 return;
 
             default:
+                // Se o usuário digitar uma opção inválida
                 vaiparaxy(07, 23);
                 printf("                                                                     ");
                 vaiparaxy(07, 23);

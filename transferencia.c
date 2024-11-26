@@ -1,5 +1,11 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Funcao Transferencia */
 #include "funcoes.h"
 
+// Funcao para transferir saldo
 void transferencia(tipolista_conta *l, tipolista_mov *m)
 {
 
@@ -21,7 +27,7 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
         vaiparaxy(07, 23);
         printf("Digite o codigo de uma conta ou 0 para sair: ");
         vaiparaxy(24, 07);
-        scanf("%d", &movi.codigo_conta);
+        scanf("%d", &movi.codigo_conta); // Se o código for 0, sai da função
 
         if (movi.codigo_conta == 0)
         {
@@ -32,7 +38,7 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
         {
 
             do
-            {
+            {   // Verifica conta
                 limpa_msg();
                 aux_cont = verifica_codigo_conta(l, movi.codigo_conta);
                 if (aux_cont == NULL)
@@ -76,7 +82,7 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
             scanf("%d", &movi.codigo_conta2);
 
             do
-            {
+            {   // Verifica se as contas são iguais
                 while (movi.codigo_conta == movi.codigo_conta2)
                 {
                     vaiparaxy(07, 23);
@@ -141,6 +147,7 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
 
             aux_cont = verifica_codigo_conta(l, movi.codigo_conta);
             
+            // Verifica se há saldo suficiente na conta de origem
             if (valor_transferido > aux_cont->conteudo.v1_saldo + aux_cont->conteudo.v1_limite)
             {
                 vaiparaxy(07, 23);
@@ -161,6 +168,7 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
             {
                 strcpy(movi.dt_movimento, le_movi(46, 18));
 
+                // Verifica a Data
                 if (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0)
                 {
                     vaiparaxy(07, 23);
@@ -181,25 +189,26 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
 
             if (confirma_transferencia == 1)
             {
-
+                // Atualiza o saldo da conta de origem
                 aux_cont->conteudo.v1_saldo -= valor_transferido;
                 saldo_mais_limite = aux_cont->conteudo.v1_saldo + aux_cont->conteudo.v1_limite;
 
+                // Se o saldo for negativo, atualiza o limite de crédito
                 if (aux_cont->conteudo.v1_saldo < 0)
                 {
                     aux_cont->conteudo.v1_limite -= valor_transferido;
                     vaiparaxy(24, 13);
                     printf("          ");
                     vaiparaxy(24, 13);
-                    printf("%.2f", aux_cont->conteudo.v1_limite);
+                    printf("%.2f", aux_cont->conteudo.v1_limite); //Novo limite
                 }
 
                 vaiparaxy(24, 14);
                 printf("           ");
                 vaiparaxy(24, 14);
-                printf("%.2f", saldo_mais_limite);
+                printf("%.2f", saldo_mais_limite); //Novo total (saldo + limite)
                 vaiparaxy(24, 15);
-                printf("%.2f", aux_cont->conteudo.v1_saldo);
+                printf("%.2f", aux_cont->conteudo.v1_saldo); //Exibe o saldo apos a transferencia 
 
                 aux_conta_destino = verifica_codigo_conta(l, movi.codigo_conta2);
 

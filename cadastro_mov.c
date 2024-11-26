@@ -1,5 +1,10 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Cadastro Movimentacoes */
 #include "funcoes.h"
-
+// Funcao Cadastrar Movi
 void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
 {
     reg_movimentos movi;
@@ -38,6 +43,7 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
             aux_cont = verifica_codigo_conta(l, movi.codigo_conta);
             if (aux_cont != NULL)
             {
+                // Se a conta for encontrada e estiver desativada, exibe mensagem de erro
                 if (aux_cont->conteudo.status == 2)
                 {
                     limpa_msg();
@@ -67,7 +73,7 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
                 saldo_mais_limite = aux_cont->conteudo.v1_saldo + aux_cont->conteudo.v1_limite;
                 vaiparaxy(31, 14);
                 printf("%.2f", saldo_mais_limite);
-
+                // Se o saldo e limite da conta forem ambos 0 ou negativos, exibe erro
                 if (aux_cont->conteudo.v1_saldo <= 0 && aux_cont->conteudo.v1_limite <= 0)
                 {
                     limpa_msg();
@@ -77,7 +83,7 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
                     break;
                     return;
                 }
-
+                // Conta quantas movimentações foram feitas nesta conta
                 tipoApontador_mov temp = m->primeiro;
                 while (temp != NULL)
                 {
@@ -102,11 +108,11 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
                 return;
             }
         }
-
+        // Loop para a entrada e validação da data da movimentação
         do
         {
             strcpy(movi.dt_movimento, le_movi(31, 17));
-
+            // Compara a data informada com a última data de movimentação
             if (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0)
             {
                 vaiparaxy(07, 23);
@@ -120,13 +126,13 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
             }
         } while (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0);
        
-
+        // Pergunta se a movimentação será débito ou crédito
         vaiparaxy(07, 23);
         printf("1-Debito | 2-Credito:");
 
         scanf("%d", &opc);
         limpa_msg();
-
+        // Exibe o tipo de movimentação escolhida (débito ou crédito)
         switch (opc)
         {
         case 1:
@@ -151,7 +157,7 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
         // Leitura do valor da movimentação
         vaiparaxy(31, 20);
         scanf("%f", &movi.v1_movimento);
-
+        // Verifica se o saldo ou limite são suficientes para a movimentação
         if (aux_cont->conteudo.v1_limite <= 0 && movi.v1_movimento > aux_cont->conteudo.v1_saldo)
         {
             limpa_msg();

@@ -1,11 +1,17 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Alterar cadastro na posiçao */
 #include "funcoes.h"
+// Funcao Alterar na Posicao
 void alterar_na_posicao(tipolista_conta *l)
 {
     tipoApontador_conta aux;
     int resp;
     int campo;
     reg_contas func;
-
+    // Se a lista estiver vazia
     if (l->primeiro == NULL)
     {
         tela();
@@ -32,7 +38,7 @@ void alterar_na_posicao(tipolista_conta *l)
                 vaiparaxy(48, 23);
                 scanf("%d", &func.codigo_conta);
                 aux = verifica_codigo_conta(l, func.codigo_conta);
-
+                // Se o código não for encontrado
                 if (aux == NULL && func.codigo_conta != 0)
                 {
                     vaiparaxy(07, 23);
@@ -44,6 +50,7 @@ void alterar_na_posicao(tipolista_conta *l)
 
             } while (aux == NULL && func.codigo_conta != 0);
 
+            // Se o código da conta for válido (não for 0)
             if (func.codigo_conta != 0)
             {
                 tela();
@@ -52,8 +59,9 @@ void alterar_na_posicao(tipolista_conta *l)
                 printf("                                                  ");
                 vaiparaxy(20, 03);
                 printf("ALTERACAO CADASTRO");
-                func = aux->conteudo;
+                func = aux->conteudo; // Copia os dados da conta para a estrutura 'func'
 
+                // Exibe as informações da conta a ser alterada
                 vaiparaxy(40, 05);
                 printf("%d", func.codigo_conta);
                 vaiparaxy(40, 07);
@@ -70,6 +78,7 @@ void alterar_na_posicao(tipolista_conta *l)
                 printf("%.2f", func.v1_limite);
                 vaiparaxy(40, 19);
                 printf("%d", func.status);
+
                 if (func.status == 1)
                 {
                     vaiparaxy(43, 19);
@@ -81,7 +90,7 @@ void alterar_na_posicao(tipolista_conta *l)
                     printf("(Conta desativada)");
                 }
 
-                do
+                do  // Inicia a interação para escolher o campo a ser alterado
                 {
                     do
                     {
@@ -99,7 +108,7 @@ void alterar_na_posicao(tipolista_conta *l)
                             getch();
                         }
                     } while (campo < 0 || campo > 7);
-
+                    // Se o campo for inválido, exibe uma mensagem de erro
                     if (campo != 0)
                     {
                         switch (campo)
@@ -150,7 +159,8 @@ void alterar_na_posicao(tipolista_conta *l)
 
                             do
                             {
-                                if(func.v1_saldo != 0){
+                                if(func.v1_saldo != 0) // Se o saldo não for zero, o status não pode ser alterado
+                                {
                                     vaiparaxy(07,23);
                                     printf("O status nao pode ser alterado se tiver saldo ou debito");
                                     func.status = 1;

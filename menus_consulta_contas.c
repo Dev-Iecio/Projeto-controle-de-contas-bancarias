@@ -1,3 +1,8 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Telas / consultas */
 #include "funcoes.h"
 
 /*int tamanho(tipolista_conta *l)

@@ -1,19 +1,24 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Consultar movimentaçoes */
 #include "funcoes.h"
-
+// Funcao Consultar Movimentacoes
 void consulta_movi(tipolista_conta *l, tipolista_mov *m)
 {
     reg_movimentos movi;
     tipoApontador_mov aux;
     tipoApontador_conta aux_cont;
     int posicao = 0;
-     tela_consulta_movi();
+    tela_consulta_movi();
     
-   
+    // Solicita ao usuário o código de uma conta ou 0 para sair
     vaiparaxy(07, 23);
     printf("Digite o codigo de uma conta ou 0 para sair: ");
     vaiparaxy(9, 5);
     scanf("%d", &movi.codigo_conta);
-
+    // Se o usuário digitar 0, sai da função
     if (movi.codigo_conta == 0)
     {
         return;
@@ -41,21 +46,21 @@ void consulta_movi(tipolista_conta *l, tipolista_mov *m)
             vaiparaxy(51, 5);
             printf("%s", aux_cont->conteudo.tipo_conta);
 
-            vaiparaxy(02, 05);
-            printf("%d", aux_cont->conteudo.codigo_conta);
+            
         }
         else
         {
+            // Se a conta não for encontrada, exibe uma mensagem de erro
             vaiparaxy(07, 23);
             printf("Conta não encontrada!");
             getch();
             return;
         }
     }
-
+    // Verifica se há movimentações registradas
     if (m->primeiro == NULL)
     {
-        
+        // Se não houver movimentações, exibe uma mensagem
         vaiparaxy(07, 23);
         printf("Nenhuma movimentacao foi feita");
         
@@ -65,11 +70,11 @@ void consulta_movi(tipolista_conta *l, tipolista_mov *m)
     }
     else
     {
-
+        // Caso existam movimentações, percorre a lista de movimentações
         aux = m->primeiro;
         int linha = 9;
       
-       
+        // Percorre a lista de movimentações
         for (; aux != NULL; aux = aux->proximo)
         {
           

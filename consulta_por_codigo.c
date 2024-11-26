@@ -1,10 +1,16 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Consulta por codigo */
 #include "funcoes.h"
+// Funcao para consultar por codigo 
 void consulta_por_codigo(tipolista_conta *l)
 {
     tela();
     tipoApontador_conta aux;
     int opc;
-
+    // Verifica se não há contas cadastradas na lista
     if (l->primeiro == NULL)
     {
         tela();

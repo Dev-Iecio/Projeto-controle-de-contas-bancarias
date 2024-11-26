@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Remover na Posicao */
 #include "funcoes.h"
+// Funcao para Remover na Posicao
 void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
 {
     int posicao;
@@ -8,7 +14,7 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
     tipoApontador_conta anterior = NULL;
 
     listar_cadastros(l);
-
+    // Verifica se a lista está vazia
     if (l->primeiro == NULL)
     {
         vaiparaxy(07, 05);
@@ -16,7 +22,7 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
         getch();
         return;
     }
-
+    // Loop principal: solicita ao usuário a posição do cadastro a ser removido
     do
     {
 
@@ -30,7 +36,7 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
         {
             return;
         }
-
+        // Verifica se a posição fornecida é válida
         if (posicao < 1 || posicao > tamanho(l))
         {
             vaiparaxy(07, 23);
@@ -43,14 +49,14 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
     } while (posicao < 1 || posicao > tamanho(l));
 
     aux = l->primeiro;
-    while (aux != NULL && cont_posicao < posicao)
+    while (aux != NULL && cont_posicao < posicao) // Localiza o item na posição desejada
     {
         anterior = aux;
         aux = aux->proximo;
         cont_posicao++;
     }
 
-    if (aux != NULL)
+    if (aux != NULL) // Se a posição foi encontrada
     {
         do
         {
@@ -82,7 +88,7 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
             vaiparaxy(07, 23);
             printf("(1)Excluir || (0)Voltar tela inicial:");
             scanf("%d", &escolha);
-
+            // Verifica se o saldo é diferente de zero, impedindo a exclusão
             if (aux->conteudo.v1_saldo != 0)
             {
                 limpa_msg();
@@ -110,6 +116,7 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
             switch (escolha)
             {
             case 1:
+                // Caso a conta seja o primeiro item da lista
                 if (aux == l->primeiro)
                 {
                     l->primeiro = aux->proximo;
@@ -118,11 +125,13 @@ void remover_em_posicao(tipolista_conta *l, tipolista_mov *m)
                         l->ultimo = NULL;
                     }
                 }
+                // Caso a conta seja o último item da lista
                 else if (aux == l->ultimo)
                 {
                     anterior->proximo = NULL;
                     l->ultimo = anterior;
                 }
+                // Caso a conta seja um item intermediário
                 else
                 {
                     anterior->proximo = aux->proximo;

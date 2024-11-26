@@ -1,7 +1,12 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Lê a movimentacoes  */
 #include "funcoes.h"
 
 
-
+// Funcao lê a movimentacoes
 char *le_movi(int col, int lin)
 {
     char *dt_movi = malloc(sizeof(char) * 15);

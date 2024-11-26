@@ -1,3 +1,8 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Consulta por Ordem Alfabetica */
 #include "funcoes.h"
 void consulta_ordem_alfabetica(tipolista_conta *l)
 {

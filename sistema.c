@@ -1,3 +1,8 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Tela Principal */
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -17,15 +22,15 @@ void vaiparaxy(int x, int y)
 
 int main()
 {
-    int opc;
-    tipolista_conta l;
-    l.primeiro = NULL;
+    int opc;            // Variável para armazenar a opção do menu
+    tipolista_conta l;  // Lista de contas bancárias
+    l.primeiro = NULL;  // Inicializa a lista de contas com NULL        
     l.ultimo = NULL;
-    carregar(&l);
-    tipolista_mov m;
-    m.primeiro = NULL;
+    carregar(&l);       // Carrega os dados de contas (provavelmente de um arquivo ou banco de dados)
+    tipolista_mov m;    // Lista de movimentações bancárias
+    m.primeiro = NULL;  // Inicializa a lista de movimentações com NULL
     m.ultimo = NULL;
-    carregar_movi(&m);
+    carregar_movi(&m);  // Carrega os dados das movimentações
     
     do
     {

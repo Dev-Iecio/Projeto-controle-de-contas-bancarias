@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Cadastro no Inicio da Lista */
 #include "funcoes.h"
+// Funcao para Cadastrar no Inicio
 void cadastro_inicio_lista(tipolista_conta *l)
 {
 
@@ -8,7 +14,8 @@ void cadastro_inicio_lista(tipolista_conta *l)
     int confirma;
 
     do
-    {
+    {   
+        // Exibe o cabeçalho da tela de cadastro
         tela();
         vaiparaxy(03, 03);
         printf("                                        ");
@@ -18,6 +25,7 @@ void cadastro_inicio_lista(tipolista_conta *l)
 
         do
         {
+            // Solicita o código da conta e permite que o usuário cancele o cadastro digitando 0
             vaiparaxy(07, 23);
             printf("Digite 0 para cancelar e voltar");
 
@@ -26,16 +34,17 @@ void cadastro_inicio_lista(tipolista_conta *l)
             vaiparaxy(40, 05);
             scanf("%d", &conta.codigo_conta);
 
-            // 0 sai do loop
+            // Se o código for 0, a função retorna, cancelando o cadastro
             if (conta.codigo_conta == 0)
             {
                 return;
             }
-
+            // Verifica se já existe uma conta cadastrada com esse código
             aux = verifica_codigo_conta(l, conta.codigo_conta);
 
             if (aux != NULL)
             {
+                // Se a conta já existir, exibe uma mensagem e pede para tentar novamente
                 vaiparaxy(07, 23);
                 printf("                                                 ");
                 vaiparaxy(07, 23);
@@ -85,7 +94,7 @@ void cadastro_inicio_lista(tipolista_conta *l)
             vaiparaxy(40, 17);
             fflush(stdin);
             scanf("%f", &conta.v1_limite);
-
+            // Pergunta se a conta será ativa ou desativada
             do
             {
                 if (conta.v1_saldo != 0)
@@ -98,6 +107,7 @@ void cadastro_inicio_lista(tipolista_conta *l)
                     getch();
                     break;
                 }
+                // Se o saldo for zero, solicita ao usuário para definir o status da conta
                 vaiparaxy(07, 23);
                 printf("(1)-Conta ativa (2)-Conta desativada");
                 vaiparaxy(40, 19);
@@ -113,11 +123,11 @@ void cadastro_inicio_lista(tipolista_conta *l)
             scanf("%d", &confirma);
         }
         if (confirma == 1)
-        {
+        {   
             aux = (tipoApontador_conta)malloc(sizeof(tipoitem_conta));
             aux->proximo = NULL;
             aux->conteudo = conta;
-
+            // Se a lista de contas estiver vazia, o novo nó será o primeiro e o último
             if (l->primeiro == NULL)
             {
                 l->primeiro = aux;
@@ -125,9 +135,11 @@ void cadastro_inicio_lista(tipolista_conta *l)
             }
             else
             {
+                // Se a lista já tiver elementos, o novo nó é inserido no início
                 aux->proximo = l->primeiro;
                 l->primeiro = aux;
             }
+            // Se o último nó for NULL (não houver contas), o último nó será o primeiro
             if (l->ultimo == NULL)
             {
                 l->ultimo = l->primeiro;

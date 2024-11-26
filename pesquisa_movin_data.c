@@ -1,5 +1,10 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Pesquisa de movimentaçoes */
 #include "funcoes.h"
-
+// Função que pesquisa a data do movimento para um código de conta específico
 char *pesquisa_movin_data(tipolista_mov *m, int cod)
 {
 
@@ -7,9 +12,9 @@ char *pesquisa_movin_data(tipolista_mov *m, int cod)
     aux = m->primeiro;
     char *dt_movi = malloc(sizeof(char) * 11);
     strcpy(dt_movi, "");
-
+    // Enquanto não atingir o fim da lista de movimentos
     while (aux != NULL)
-    {
+    {   // Se o código da conta do movimento atual for igual ao código procurado
         if (aux->conteudo.codigo_conta == cod)
         {
             strcpy(dt_movi, aux->conteudo.dt_movimento);
@@ -22,17 +27,17 @@ char *pesquisa_movin_data(tipolista_mov *m, int cod)
     return dt_movi;
 }
 
-
+// Função que conta o número de movimentos de um código de conta específico
 int conta_movi(tipolista_mov *m, int cod)
 {
     char *data;
     tipoApontador_mov aux;
     int contador = 0;
     aux = m->primeiro;
-
+    // Enquanto não atingir o fim da lista de movimentos
     while (aux != NULL)
     {
-
+        // Se o código da conta do movimento atual for igual ao código procurado
         if (aux->conteudo.codigo_conta == cod)
         {
             contador++;

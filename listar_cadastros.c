@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Dalecio
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Listar cadastros */
 #include "funcoes.h"
+// Funcao verificar se tem cadastro
 void listar_cadastros(tipolista_conta *l)
 {
     tipoApontador_conta aux;

@@ -1,3 +1,8 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Telas */
 #include <windows.h>
 #include "funcoes.h"
 
@@ -25,7 +30,7 @@ void tela()
     printf("+-----------------------------------------------------------------------------+");
 
     vaiparaxy(03, 02);
-    printf("GABRIEL DALECIO.RA10002691||GABRIEL RIBEIRO");
+    printf("GABRIEL DALECIO.RA10002691||GABRIEL RIBEIRO.RA165808-2024");
     vaiparaxy(03, 03);
     printf("SISTEMA DE CONTROLE BANCARIO");
     vaiparaxy(02, 23);

@@ -1,4 +1,10 @@
+/*Autor......: Gabriel Ribeiro
+  Data.......: 24/11/2024
+  Equipe.....: RA10002691 - Gabriel Dalecio 1
+               RA165808-2024 - Gabriel Ribeiro 2
+  Objetivo...: Apagar 1 cadastro da lista */
 #include "funcoes.h"
+// Funcao para apagar Primeiro
 void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
 {
     tela();
@@ -6,7 +12,7 @@ void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
     printf("TELA DELETAR O PRIMEIRO CADASTRO");
     tipoApontador_conta aux;
     int escolha = 5;
-
+    // Verifica se a lista de contas está vazia
     if (l->primeiro == NULL)
     {
         vaiparaxy(07, 05);
@@ -16,7 +22,7 @@ void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
     }
     else
     {
-        aux = l->primeiro;
+        aux = l->primeiro; // Se houver itens, começa com o primeiro item da lista
     }
     do
     {
@@ -46,7 +52,7 @@ void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
         printf("(1)Excluir funcionario || (0)Voltar para tela inicial ");
         vaiparaxy(61, 23);
         scanf("%d", &escolha);
-
+        // Verifica se o saldo da conta é diferente de zero. Se for, a conta não pode ser excluída
         if (aux->conteudo.v1_saldo != 0)
         {
             limpa_msg();
@@ -70,8 +76,10 @@ void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
         switch (escolha)
         {
         case 1:
+            // Se o usuário escolher excluir, verifica se a lista contém apenas um item
             if (l->primeiro->proximo == NULL)
             {
+                // Se a lista tem apenas um item, libera a memória do primeiro item e torna a lista vazia
                 free(l->primeiro);
                 l->primeiro = NULL;
                 l->ultimo = NULL;
@@ -86,6 +94,7 @@ void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
             }
             else
             {
+                // Se houver mais de um item, remove o primeiro item da lista
                 l->primeiro = aux->proximo;
                 free(aux);
                 tela();
@@ -103,6 +112,7 @@ void mostrar_apagar_primeiro(tipolista_conta *l, tipolista_mov *m)
             return;
             break;
         default:
+            // Se o usuário digitar uma opção inválida
             vaiparaxy(07, 23);
             printf("                                                                     ");
             vaiparaxy(07, 23);
