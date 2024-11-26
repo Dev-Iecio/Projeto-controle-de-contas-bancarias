@@ -77,6 +77,12 @@ void consulta_movi(tipolista_conta *l, tipolista_mov *m)
         // Percorre a lista de movimentações
         for (; aux != NULL; aux = aux->proximo)
         {
+            /*if(aux->conteudo.sequencial == 0){
+                vaiparaxy(07,23);
+                printf("Nao ha movimentacoes nessa conta");
+            
+                break;
+            }*/
           
             if (aux->conteudo.codigo_conta == movi.codigo_conta)
             {

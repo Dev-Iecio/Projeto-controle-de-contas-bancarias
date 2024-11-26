@@ -11,7 +11,7 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
     tipoApontador_mov aux;
     tipoApontador_conta aux_cont;
     reg_contas contas;
-    
+
     float condicao_sald_limite;
     float saldo_mais_limite;
     char dt_data_inv[11], dt_maior[11], dt_maior_inv[11], favorecido[50];
@@ -108,13 +108,51 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
                 return;
             }
         }
-        // Loop para a entrada e validação da data da movimentação
-        do
+
+        /*do
         {
+
             strcpy(movi.dt_movimento, le_movi(31, 17));
             // Compara a data informada com a última data de movimentação
             if (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0)
             {
+
+                vaiparaxy(07, 23);
+                printf("Data Invalida");
+                getch();
+                limpa_msg();
+                vaiparaxy(07, 23);
+                printf("%s - %s", pesquisa_movin_data(m, contas.codigo_conta), inverte_data(movi.dt_movimento));
+                getch();
+                limpa_msg();
+            }
+        } while (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0);*/
+        do
+        {
+            // Lê a data de movimentação
+            strcpy(movi.dt_movimento, le_movi(31, 17));
+
+            // Compara a data informada com a última data de movimentação
+            if (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0)
+            {
+
+                
+                /*char *data_inv = inverte_data(movi.dt_movimento);
+                char *data_maior_inv = inverte_data(pesquisa_movin_data(m, movi.codigo_conta));
+
+                do
+                {
+                   
+                    if (strcmp(data_inv, data_maior_inv) < 0)
+                    {
+                        limpa_msg();
+                        vaiparaxy(07, 23);
+                        printf("A data nao pode ser menor que a ultima data %s", data_maior_inv);
+                        strcpy(movi.dt_movimento, le_movi(31, 17));
+                        data_inv = inverte_data(movi.dt_movimento);
+                    }
+                } while (strcmp(data_inv, data_maior_inv) < 0); */
+
                 vaiparaxy(07, 23);
                 printf("Data Invalida");
                 getch();
@@ -125,7 +163,7 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
                 limpa_msg();
             }
         } while (strcmp(inverte_data(movi.dt_movimento), inverte_data(pesquisa_movin_data(m, contas.codigo_conta))) > 0);
-       
+
         // Pergunta se a movimentação será débito ou crédito
         vaiparaxy(07, 23);
         printf("1-Debito | 2-Credito:");
@@ -252,6 +290,6 @@ void cadastro_mov(tipolista_conta *l, tipolista_mov *m)
         printf("Deseja realizar outra movimentacao:(1-sim | 2-nao): ");
         scanf("%d", &loop);
 
-        //movimentacoes_conta = 0;
+        // movimentacoes_conta = 0;
     } while (loop == 1);
 }

@@ -82,7 +82,7 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
             scanf("%d", &movi.codigo_conta2);
 
             do
-            {   // Verifica se as contas são iguais
+            {
                 while (movi.codigo_conta == movi.codigo_conta2)
                 {
                     vaiparaxy(07, 23);
@@ -107,7 +107,17 @@ void transferencia(tipolista_conta *l, tipolista_mov *m)
                     vaiparaxy(62, 07);
                     scanf("%d", &movi.codigo_conta2);
                 }
-            } while (aux_cont == NULL);
+                if(aux_cont->conteudo.status != 1){
+                    vaiparaxy(07,23);
+                    printf("Conta desativada");
+                    getch();
+                    vaiparaxy(62,07);
+                    printf("       ");
+                    limpa_msg();
+                    vaiparaxy(62,07);
+                    scanf("%d",&movi.codigo_conta2);
+                }
+            } while (aux_cont == NULL || aux_cont->conteudo.status != 1);
 
             if (aux_cont != NULL)
             {
